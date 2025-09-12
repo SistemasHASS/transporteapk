@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Vista de la cámara -->
+    <androidx.camera.view.PreviewView
+        android:id="@+id/previewView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <!-- Overlays superiores -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Contador -->
+        <TextView
+            android:id="@+id/tvContador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contador: 0"
+            android:textSize="18sp"
+            android:textColor="@android:color/white" />
+
+        <!-- Último QR leído -->
+        <TextView
+            android:id="@+id/tvUltimoCodigo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Último QR: ---"
+            android:textSize="16sp"
+            android:textColor="@android:color/holo_green_light"
+            android:layout_marginTop="8dp" />
+
+    </LinearLayout>
+
+    <!-- Botón para cerrar -->
+    <Button
+        android:id="@+id/btnCerrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cerrar"
+        android:background="@android:color/holo_red_dark"
+        android:textColor="@android:color/white"
+        android:layout_gravity="top|end"
+        android:layout_margin="16dp"/>
+    <!-- Botón linterna -->
+    <Button
+        android:id="@+id/btnLinterna"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Encender Linterna"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:background="@android:color/holo_blue_light"/>
+</FrameLayout>
+
