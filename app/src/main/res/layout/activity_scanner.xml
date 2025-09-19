@@ -8,52 +8,122 @@
         android:id="@+id/previewView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-    <!-- Overlays superiores -->
+
+    <!-- Overlay superior (semi-transparente para legibilidad) -->
     <LinearLayout
+        android:id="@+id/overlayTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="12dp"
+        android:layout_gravity="top"
+        android:background="#80000000"> <!-- negro semi-transparente -->
 
-        <!-- Contador -->
         <TextView
             android:id="@+id/tvContador"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Contador: 0"
             android:textSize="18sp"
-            android:textColor="@android:color/white" />
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:shadowColor="#AA000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"/>
 
-        <!-- Último QR leído -->
         <TextView
             android:id="@+id/tvUltimoCodigo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Último QR: ---"
             android:textSize="16sp"
-            android:textColor="@android:color/holo_green_light"
-            android:layout_marginTop="8dp" />
+            android:textStyle="bold"
+            android:layout_marginTop="6dp"
+            android:textColor="@android:color/white"
+            android:shadowColor="#AA000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"/>
 
     </LinearLayout>
 
-    <!-- Botón para cerrar -->
+    <!-- Botón cerrar (arriba derecha) -->
     <Button
         android:id="@+id/btnCerrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cerrar"
-        android:background="@android:color/holo_red_dark"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:text="✖"
         android:textColor="@android:color/white"
+        android:textSize="18sp"
         android:layout_gravity="top|end"
-        android:layout_margin="16dp"/>
-    <!-- Botón linterna -->
+        android:layout_margin="12dp"
+        android:backgroundTint="@android:color/holo_red_dark"/>
+
+    <!-- Marco guía del scanner (centro) con esquinas verdes -->
+    <FrameLayout
+        android:id="@+id/scanner_frame"
+        android:layout_width="260dp"
+        android:layout_height="160dp"
+        android:layout_gravity="center">
+
+        <!-- esquinas (líneas) -->
+        <View
+            android:layout_width="40dp"
+            android:layout_height="4dp"
+            android:layout_gravity="top|start"
+            android:background="@android:color/white"/>
+        <View
+            android:layout_width="4dp"
+            android:layout_height="40dp"
+            android:layout_gravity="top|start"
+            android:background="@android:color/white"/>
+
+        <View
+            android:layout_width="40dp"
+            android:layout_height="4dp"
+            android:layout_gravity="top|end"
+            android:background="@android:color/white"/>
+        <View
+            android:layout_width="4dp"
+            android:layout_height="40dp"
+            android:layout_gravity="top|end"
+            android:background="@android:color/white"/>
+
+        <View
+            android:layout_width="40dp"
+            android:layout_height="4dp"
+            android:layout_gravity="bottom|start"
+            android:background="@android:color/white"/>
+        <View
+            android:layout_width="4dp"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom|start"
+            android:background="@android:color/white"/>
+
+        <View
+            android:layout_width="40dp"
+            android:layout_height="4dp"
+            android:layout_gravity="bottom|end"
+            android:background="@android:color/white"/>
+        <View
+            android:layout_width="4dp"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom|end"
+            android:background="@android:color/white"/>
+
+    </FrameLayout>
+
+    <!-- Botón linterna (abajo derecha) -->
     <Button
         android:id="@+id/btnLinterna"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Encender Linterna"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:background="@android:color/holo_blue_light"/>
-</FrameLayout>
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:text="🔦"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="18dp"
+        android:backgroundTint="@android:color/holo_blue_light"/>
 
+</FrameLayout>

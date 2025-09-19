@@ -1,6 +1,7 @@
 package com.example.transporteapk;
 
 import android.content.pm.PackageManager;
+import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.util.Log;
 import android.webkit.WebView;
@@ -31,6 +32,8 @@ import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
 
 public class ScannerActivity extends AppCompatActivity {
     private PreviewView previewView;
@@ -38,17 +41,16 @@ public class ScannerActivity extends AppCompatActivity {
     private ExecutorService cameraExecutor;
     public static WebView webViewRef; // referencia al WebView principal
     private static final int REQUEST_CAMERA_PERMISSION = 1001;
-
-    // 🔹 Nuevos: contador y último QR
+    private ToneGenerator toneGenerator;
     private TextView tvContador, tvUltimoCodigo;
     private int contador = 0;
     private final Set<String> codigosEscaneados = new HashSet<>();
-
     private boolean linternaEncendida = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        toneGenerator = new ToneGenerator(AudioManager.STREAM_MUSIC, 100); // 100 = volumen
         setContentView(R.layout.activity_scanner);
 
         previewView = findViewById(R.id.previewView);
@@ -172,9 +174,12 @@ public class ScannerActivity extends AppCompatActivity {
             tvUltimoCodigo.setText("Último QR: " + codigo);
             tvContador.setText("Contador: " + contador);
             Toast.makeText(this, "QR leído: " + codigo, Toast.LENGTH_SHORT).show();
+            if (toneGenerator != null) {
+                toneGenerator.startTone(ToneGenerator.TONE_PROP_BEEP, 150);
+            }
         });
 
-        Log.d("ScannerActivity", "✅ Nuevo código leído: " + codigo);
+        Log.d("ScannerActivity", "Nuevo código leído: " + codigo);
 
         // 🔹 Enviar al WebView si existe
         if (webViewRef != null) {
@@ -188,6 +193,10 @@ public class ScannerActivity extends AppCompatActivity {
         super.onDestroy();
         if (cameraExecutor != null) {
             cameraExecutor.shutdown();
+        }
+        if (toneGenerator != null) {
+            toneGenerator.release();
+            toneGenerator = null;
         }
     }
 }

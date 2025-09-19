@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // 🔹 Cargar tu página web
-        webView.loadUrl("https://172.16.20.3:7504/");
+        webView.loadUrl("https://qastransporte.agroapps.net:7504/");
 
         // 🔹 Pasar referencia al ScannerActivity para devolver resultados
         ScannerActivity.webViewRef = webView;
